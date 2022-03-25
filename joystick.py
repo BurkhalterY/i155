@@ -133,9 +133,13 @@ class Joystick:
             self._hats[i] = j.get_hat(i)
 
     def add_event(self, event_id: int, func: Callable[event.EventType, None]):
+        if not event_id in self._events:
+            self._events = []
         self._events[event_id] += [func]
 
     def remove_event(self, event_id: int, func: Callable[event.EventType, None]):
+        if not event_id in self._events:
+            return
         events = self._events[event_id]
         if func in events:
             events.remove(func)
