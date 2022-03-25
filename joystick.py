@@ -48,8 +48,6 @@ class Joystick:
         self.refresh()
 
         def update_axis(event: event.Event):
-            if event.joy != self._id:
-                return
             i : int = event.axis
             if not i in self._axis:
                 return
@@ -61,16 +59,12 @@ class Joystick:
             #print(event)
 
         def update_button_down(event: event.Event):
-            if event.joy != self._id:
-                return
             i : int = event.button
             if not i in self._buttons:
                 return
             self._buttons[i] = True
 
         def update_button_up(event: event.Event):
-            if event.joy != self._id:
-                return
             i : int = event.button
             if not i in self._buttons:
                 return
@@ -156,6 +150,12 @@ class Joystick:
             Id of the event whose functions are to call
         '''
         if not event_id in self._events:
+            return
+
+        if not 'joy' in event.dict:
+            return
+
+        if event.joy != self._id:
             return
 
         for f in self._events[event_id]:
