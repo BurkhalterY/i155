@@ -20,8 +20,6 @@ _joystick_events = [
     JOYHATMOTION,
 ]
 
-_joysticks : dict[int, Joystick] = {}
-
 class Joystick:
     '''Represents a joystick for the game
 
@@ -185,3 +183,5 @@ def refresh_joysticks():
         for e in events:
             for j in _joysticks.values():
                 j._call_event(event_id, e)
+
+_joysticks : dict[int, Joystick] = {}
