@@ -1,3 +1,4 @@
+from typing import Callable
 import pygame
 joystick = pygame.joystick
 event = pygame.event
@@ -28,7 +29,7 @@ class Joystick:
     (This part depends on pygame's goodwill)
     '''
 
-    _events : dict[int, list[callable[event.EventType, None]]] = {}
+    _events : dict[int, list[Callable[event.EventType, None]]] = {}
     _id : int
 
     _axis : dict[int, float] = {}
@@ -133,10 +134,10 @@ class Joystick:
         for i in range(j.get_numhats()):
             self._hats[i] = j.get_hat(i)
 
-    def add_event(self, event_id: int, func: callable[event.EventType, None]):
+    def add_event(self, event_id: int, func: Callable[event.EventType, None]):
         self._events[event_id] += [func]
 
-    def remove_event(self, event_id: int, func: callable[event.EventType, None]):
+    def remove_event(self, event_id: int, func: Callable[event.EventType, None]):
         events = self._events[event_id]
         if func in events:
             events.remove(func)
