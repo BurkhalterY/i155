@@ -27,11 +27,24 @@ j1.add_event(pygame.JOYAXISMOTION, p1.move)
 j2.add_event(pygame.JOYAXISMOTION, p2.move)
 
 while playing:
-    refresh_joysticks()
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             playing = False
+        if event.type == pygame.JOYAXISMOTION:
+            j1._call_event(pygame.JOYAXISMOTION, event)
+            j2._call_event(pygame.JOYAXISMOTION, event)
+        if event.type == pygame.JOYBALLMOTION:
+            j1._call_event(pygame.JOYBALLMOTION, event)
+            j2._call_event(pygame.JOYBALLMOTION, event)
+        if event.type == pygame.JOYBUTTONDOWN:
+            j1._call_event(pygame.JOYBUTTONDOWN, event)
+            j2._call_event(pygame.JOYBUTTONDOWN, event)
+        if event.type == pygame.JOYBUTTONUP:
+            j1._call_event(pygame.JOYBUTTONUP, event)
+            j2._call_event(pygame.JOYBUTTONUP, event)
+        if event.type == pygame.JOYHATMOTION:
+            j1._call_event(pygame.JOYHATMOTION, event)
+            j2._call_event(pygame.JOYHATMOTION, event)
 
     # draw players
     pygame.draw.rect(screen, p1.color, pygame.Rect(p1.x, p1.y, p1.size, p1.size))
