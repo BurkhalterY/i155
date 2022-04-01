@@ -1,5 +1,5 @@
 import pygame
-from joystick import refresh_joysticks, Joystick
+from joystick import Joystick
 from player import Player
 
 pygame.init()
@@ -27,6 +27,10 @@ j1.add_event(pygame.JOYAXISMOTION, p1.move)
 j2.add_event(pygame.JOYAXISMOTION, p2.move)
 
 while playing:
+    for i in range(pygame.joystick.get_count()):
+        j = pygame.joystick.Joystick(i)
+        j.get_init() or j.init()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             playing = False

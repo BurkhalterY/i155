@@ -176,16 +176,4 @@ class Joystick:
     def get_hat(self, hat: int) -> tuple[float, float]:
         pass
 
-def refresh_joysticks():
-    '''"Refreshes" the joysticks by calling the most recent joystick events
-
-    /!\\ Make sure to not call `pygame.event.get` with any joystick event ids, or `pygame.event.dump` /!\\
-    '''
-    # Call the functions
-    for event_id in _joystick_events:
-        events = event.get(event_id)
-        for e in events:
-            for j in _joysticks.values():
-                j._call_event(event_id, e)
-
 _joysticks : dict[int, Joystick] = {}
