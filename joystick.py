@@ -98,6 +98,7 @@ class Joystick:
             return
 
         j = joystick.Joystick(self._id)
+        j.init()
 
         # Set everything to 0
         for i in range(j.get_numaxes()):
