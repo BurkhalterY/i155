@@ -23,8 +23,9 @@ screen.fill(BG_COLOR)
 j1 = Joystick(0)
 j2 = Joystick(1)
 
-j1.add_event(pygame.JOYAXISMOTION, p1.move)
-j2.add_event(pygame.JOYAXISMOTION, p2.move)
+#j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.move())
+#j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.move())
+j1.add_event(pygame.JOYAXISMOTION, lambda event: print(event))
 
 while playing:
     # Initializes the joysticks if they aren't (needed for pygame)
