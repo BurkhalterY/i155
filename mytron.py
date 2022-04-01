@@ -50,6 +50,34 @@ while playing:
         if event.type == pygame.JOYHATMOTION:
             j1._call_event(pygame.JOYHATMOTION, event)
             j2._call_event(pygame.JOYHATMOTION, event)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                p1.dir_x = -1
+                p1.dir_y = 0
+            elif event.key == pygame.K_RIGHT:
+                p1.dir_x = 1
+                p1.dir_y = 0
+            elif event.key == pygame.K_DOWN:
+                p1.dir_x = 0
+                p1.dir_y = 1
+            elif event.key == pygame.K_UP:
+                p1.dir_x = 0
+                p1.dir_y = -1
+            if event.key == pygame.K_a:
+                p2.dir_x = -1
+                p2.dir_y = 0
+            elif event.key == pygame.K_d:
+                p2.dir_x = 1
+                p2.dir_y = 0
+            elif event.key == pygame.K_s:
+                p2.dir_x = 0
+                p2.dir_y = 1
+            elif event.key == pygame.K_w:
+                p2.dir_x = 0
+                p2.dir_y = -1
+
+    p1.move()
+    p2.move()
 
     # draw players
     pygame.draw.rect(screen, p1.color, pygame.Rect(p1.x, p1.y, p1.size, p1.size))
