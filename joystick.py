@@ -27,7 +27,7 @@ class Joystick:
     (This part depends on pygame's goodwill)
     '''
 
-    _events : dict[int, list[Callable[Any, None]]] = {}
+    _events : dict[int, list[Callable[list[Any], None]]] = {}
     _id : int
 
     _axis : dict[int, float] = {}
