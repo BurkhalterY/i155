@@ -27,6 +27,8 @@ j2 = Joystick(1)
 #j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.move())
 j1.add_event(pygame.JOYAXISMOTION, lambda event: print(event))
 
+clock = pygame.time.Clock()
+
 while playing:
     # Initializes the joysticks if they aren't (needed for pygame)
     for i in range(pygame.joystick.get_count()):
@@ -85,5 +87,6 @@ while playing:
     pygame.draw.rect(screen, p2.color, pygame.Rect(p2.x, p2.y, p2.size, p2.size))
 
     pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()
