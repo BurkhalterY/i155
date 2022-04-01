@@ -1,4 +1,4 @@
-from typing import Callable, List, Tuple, Dict, Any
+from typing import Callable, List, Tuple, Dict
 import pygame
 joystick = pygame.joystick
 event = pygame.event
@@ -27,7 +27,7 @@ class Joystick:
     (This part depends on pygame's goodwill)
     '''
 
-    _events : Dict[int, List[Callable[List[Any], None]]] = {}
+    _events : Dict[int, List[Callable]] = {}
     _id : int
 
     _axis : Dict[int, float] = {}
