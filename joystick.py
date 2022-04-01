@@ -167,13 +167,13 @@ class Joystick:
     def get_axis(self, axis: int) -> float:
         pass
 
-    def get_ball(self, ball: int) -> tuple[float, float]:
+    def get_ball(self, ball: int) -> Tuple[float, float]:
         pass
 
     def get_button(self, button: int) -> bool:
         pass
 
-    def get_hat(self, hat: int) -> tuple[float, float]:
+    def get_hat(self, hat: int) -> Tuple[float, float]:
         pass
 
-_joysticks : dict[int, Joystick] = {}
+_joysticks : Dict[int, Joystick] = {}
