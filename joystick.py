@@ -1,4 +1,4 @@
-from typing import Callable, Any
+from typing import Callable, List, Tuple, Dict
 import pygame
 joystick = pygame.joystick
 event = pygame.event
@@ -27,13 +27,13 @@ class Joystick:
     (This part depends on pygame's goodwill)
     '''
 
-    _events : dict[int, list[Callable]] = {}
+    _events : Dict[int, List[Callable[List[Any], None]]] = {}
     _id : int
 
-    _axis : dict[int, float] = {}
-    _balls : dict[int, tuple[float, float]] = {}
-    _buttons : dict[int, bool] = {}
-    _hats : dict[int, tuple[float, float]] = {}
+    _axis : Dict[int, float] = {}
+    _balls : Dict[int, Tuple[float, float]] = {}
+    _buttons : Dict[int, bool] = {}
+    _hats : Dict[int, Tuple[float, float]] = {}
 
     def __init__(self, jid: int):
         if jid in _joysticks:
