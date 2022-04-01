@@ -27,6 +27,7 @@ j1.add_event(pygame.JOYAXISMOTION, p1.move)
 j2.add_event(pygame.JOYAXISMOTION, p2.move)
 
 while playing:
+    # Initializes the joysticks if they aren't (needed for pygame)
     for i in range(pygame.joystick.get_count()):
         j = pygame.joystick.Joystick(i)
         j.get_init() or j.init()
