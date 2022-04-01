@@ -1,4 +1,4 @@
-from typing import Callable, List, Tuple, Dict
+from typing import Callable, List, Tuple, Dict, Any
 import pygame
 joystick = pygame.joystick
 event = pygame.event
