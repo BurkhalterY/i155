@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Any
 import pygame
 joystick = pygame.joystick
 event = pygame.event
@@ -27,7 +27,7 @@ class Joystick:
     (This part depends on pygame's goodwill)
     '''
 
-    _events : dict[int, list[Callable[list[event.EventType], None]]] = {}
+    _events : dict[int, list[Callable[Any, None]]] = {}
     _id : int
 
     _axis : dict[int, float] = {}
