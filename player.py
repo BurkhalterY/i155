@@ -10,7 +10,6 @@ class Player:
         self.speed = 0.18
         self.size = 10
 
-    def move(self, event: pygame.event.Event):
-        print(event.axis)
+    def move(self):
         self.x += self.dir_x * self.speed
         self.y += self.dir_y * self.speed
