@@ -7,7 +7,7 @@ class Player:
         self.dir_x = dir_x
         self.dir_y = dir_y
         self.color = color
-        self.speed = 0.18
+        self.speed = 2
         self.size = 10
 
     def move(self):
