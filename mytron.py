@@ -17,8 +17,10 @@ pygame.display.set_caption("TRON BATTLE 1V1 OMG")
 
 playing = True
 
-p1 = Player(40, height / 2 - 30 / 2, 0, 0, PLAYER_1_COLOR)
-p2 = Player(width - 30 * 2, height / 2 - 30 / 2, 0, 0, PLAYER_2_COLOR)
+size = width / 50
+offset = 30
+p1 = Player(width - offset * 2, height / 2 - offset / 2, 0, 0, size, PLAYER_1_COLOR)
+p2 = Player(size * 2, height / 2 - offset / 2, 0, 0, size, PLAYER_2_COLOR)
 
 screen.fill(BG_COLOR)
 
