@@ -19,8 +19,13 @@ playing = True
 
 size = width / 50
 offset = 30
-p1 = Player(width - offset * 2, height / 2 - offset / 2, 0, 0, size, PLAYER_1_COLOR)
-p2 = Player(size * 2, height / 2 - offset / 2, 0, 0, size, PLAYER_2_COLOR)
+
+p1_default_x = width - offset * 2
+p1_default_y = height / 2 - offset / 2
+p2_default_x = size * 2
+p2_default_y = height / 2 - offset / 2
+p1 = Player(p1_default_x, p1_default_y, 0, 0, size, PLAYER_1_COLOR)
+p2 = Player(p2_default_x, p2_default_y, 0, 0, size, PLAYER_2_COLOR)
 
 screen.fill(BG_COLOR)
 
@@ -33,6 +38,20 @@ j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.change_direction(event))
 j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.change_direction(event))
 
 clock = pygame.time.Clock()
+
+def reset():
+    print('reset')
+    # Player 1
+    # p1.x = p1_default_x
+    # p1.y = p1_default_y
+    # p1.dir_x = 0
+    # p1.dir_y = 0
+
+    # Player 2
+    # p2.x = p2_default_x
+    # p2.y = p2_default_y
+    # p2.dir_x = 0
+    # p2.dir_y = 0
 
 while playing:
     # Initializes the joysticks if they aren't (needed for pygame)
@@ -87,9 +106,17 @@ while playing:
     p1.move()
     p2.move()
 
+    if -1 != p1.rect.collidelist(p2.rects) or -1 != p1.rect.collidelist(p1.rects[:-20]):
+        print("p1 meurt")
+        reset()
+
+    if -1 != p2.rect.collidelist(p1.rects) or -1 != p2.rect.collidelist(p2.rects[:-20]):
+        print("p2 meurt")
+        reset()
+
     # draw players
-    pygame.draw.rect(screen, p1.color, pygame.Rect(p1.x, p1.y, p1.size, p1.size))
-    pygame.draw.rect(screen, p2.color, pygame.Rect(p2.x, p2.y, p2.size, p2.size))
+    p1.draw(screen)
+    p2.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
