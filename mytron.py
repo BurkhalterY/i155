@@ -1,16 +1,18 @@
 import pygame
 from joystick import Joystick
 from player import Player
+import os
 
 pygame.init()
+os.environ["DISPLAY"] = ":0"
+pygame.display.init()
 
 PLAYER_1_COLOR = (0, 0, 255)
 PLAYER_2_COLOR = (255, 255, 0)
 BG_COLOR = (0, 0, 0)
 
-width = 480
-height = 320
-screen = pygame.display.set_mode((width, height))
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+width, height = pygame.display.get_surface().get_size()
 pygame.display.set_caption("TRON BATTLE 1V1 OMG")
 
 playing = True
