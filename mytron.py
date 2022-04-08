@@ -11,7 +11,7 @@ PLAYER_1_COLOR = (0, 0, 255)
 PLAYER_2_COLOR = (255, 255, 0)
 BG_COLOR = (0, 0, 0)
 
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((480, 320), pygame.FULLSCREEN)
 width, height = pygame.display.get_surface().get_size()
 pygame.display.set_caption("TRON BATTLE 1V1 OMG")
 
@@ -27,7 +27,8 @@ j2 = Joystick(1)
 
 #j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.move())
 #j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.move())
-j1.add_event(pygame.JOYAXISMOTION, lambda event: print(event))
+j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.change_direction(event))
+j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.change_direction(event))
 
 clock = pygame.time.Clock()
 

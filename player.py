@@ -13,3 +13,10 @@ class Player:
     def move(self):
         self.x += self.dir_x * self.speed
         self.y += self.dir_y * self.speed
+
+    def change_direction(self, event):
+        print(event)
+        if event.axis == 0:
+            self.dir_x = round(event.value)
+        elif event.axis == 1:
+            self.dir_y = round(event.value)
