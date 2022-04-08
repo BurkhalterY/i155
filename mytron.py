@@ -29,8 +29,8 @@ j2 = Joystick(1)
 
 #j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.move())
 #j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.move())
-j1.add_event(pygame.JOYAXISMOTION, lambda event: event.joy == 0 or p1.change_direction(event))
-j2.add_event(pygame.JOYAXISMOTION, lambda event: event.joy == 1 or p2.change_direction(event))
+j1.add_event(pygame.JOYAXISMOTION, lambda event: p1.change_direction(event))
+j2.add_event(pygame.JOYAXISMOTION, lambda event: p2.change_direction(event))
 
 clock = pygame.time.Clock()
 

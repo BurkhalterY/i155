@@ -153,6 +153,7 @@ class Joystick:
         event_id: int
             Id of the event whose functions are to call
         '''
+        print(self._id)
         if not event_id in self._events:
             return
 
