@@ -118,7 +118,7 @@ class Joystick:
         self.reset()
 
         jid = self._id
-        if 0 > jid or jid >= joystick.get_count():
+        if 0 < jid or jid >= joystick.get_count():
             # You can't fetch something that doesn't exist
             return
 
@@ -153,7 +153,6 @@ class Joystick:
         event_id: int
             Id of the event whose functions are to call
         '''
-        print(self._id)
         if not event_id in self._events:
             return
 
