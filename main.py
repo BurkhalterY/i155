@@ -1,7 +1,7 @@
-import mytron
+from mytron import Tron
 
 def main():
-    pass
+    Tron()
 
 if __name__ == '__main__':
     main()

@@ -3,8 +3,8 @@ import pygame
 joystick = pygame.joystick
 event = pygame.event
 
-pygame.get_init() or pygame.init()
-joystick.get_init() or joystick.init()
+# pygame.get_init() or pygame.init()
+# joystick.get_init() or joystick.init()
 
 JOYAXISMOTION = pygame.JOYAXISMOTION
 JOYBALLMOTION = pygame.JOYBALLMOTION
