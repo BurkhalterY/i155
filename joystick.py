@@ -12,13 +12,6 @@ JOYBUTTONDOWN = pygame.JOYBUTTONDOWN
 JOYBUTTONUP = pygame.JOYBUTTONUP
 JOYHATMOTION = pygame.JOYHATMOTION
 
-_joystick_events = [
-    JOYAXISMOTION,
-    JOYBALLMOTION,
-    JOYBUTTONDOWN,
-    JOYBUTTONUP,
-    JOYHATMOTION,
-]
 
 class Joystick:
     '''Represents a joystick for the game
@@ -37,7 +30,8 @@ class Joystick:
 
     def __init__(self, jid: int):
         if jid in _joysticks:
-            return _joysticks[jid]
+            self = _joysticks[jid]
+            return
         if jid < 0:
             raise IndexError("No joystick id can be below 0")
 

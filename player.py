@@ -6,9 +6,9 @@ class Player:
         self.y = y
         self.dir_x = dir_x
         self.dir_y = dir_y
-        self.color = color
-        self.speed = 4
         self.size = size
+        self.color = color
+        self.speed = 3
         self.rect = pygame.Rect(x, y, size, size)
         self.rects = []
 
@@ -18,12 +18,14 @@ class Player:
         self.rect = self.rect.move(self.dir_x * self.speed, self.dir_y * self.speed)
         self.rects.append(self.rect)
 
-    def change_direction(self, event):
-        print(self.color)
-        if event.axis == 0:
-            self.dir_x = round(event.value)
-        elif event.axis == 1:
-            self.dir_y = round(event.value)
+    def change_direction(self, axis, value):
+        if axis == 0 and not self.dir_x:
+            self.dir_x = round(value)
+            self.dir_y = 0
+        elif axis == 1 and not self.dir_y:
+            self.dir_y = round(value)
+            self.dir_x = 0
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect)
+        for rect in self.rects:
+            pygame.draw.rect(screen, self.color, rect)
