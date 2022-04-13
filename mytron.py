@@ -12,7 +12,7 @@ pygame.joystick.init()
 PLAYER_1_COLOR = (0, 0, 255)
 PLAYER_2_COLOR = (255, 255, 0)
 BG_COLOR = (0, 0, 0)
-MSG_COLOG = (255, 0,0)
+MSG_COLOG = (255, 0, 0)
 
 screen = pygame.display.set_mode((480, 320), pygame.FULLSCREEN)
 screen_rect = screen.get_rect()
@@ -61,7 +61,7 @@ class Tron:
                 return
             if not disconnected:
                 disconnected = True
-                text_surface = font_msg.render("Veuillez connecter 2 joysticks pour jouer.", False, MSG_COLOG)
+                text_surface = font_msg.render('Veuillez connecter 2 joysticks pour jouer.', False, MSG_COLOG)
                 text_rect = text_surface.get_rect(center=(width / 2, height / 2))
                 screen.blit(text_surface, text_rect)
                 pygame.display.flip()
@@ -71,28 +71,29 @@ class Tron:
                     self.playing = False
 
     def run(self):
+        screen.fill(BG_COLOR)
+
         while self.playing:
-            clock.tick(60)
             self.check_joysticks()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.playing = False
                 if event.type == pygame.JOYAXISMOTION:
-                    self.j1._call_event(pygame.JOYAXISMOTION, event)
-                    self.j2._call_event(pygame.JOYAXISMOTION, event)
+                    self.j1.call_event(pygame.JOYAXISMOTION, event)
+                    self.j2.call_event(pygame.JOYAXISMOTION, event)
                 if event.type == pygame.JOYBALLMOTION:
-                    self.j1._call_event(pygame.JOYBALLMOTION, event)
-                    self.j2._call_event(pygame.JOYBALLMOTION, event)
+                    self.j1.call_event(pygame.JOYBALLMOTION, event)
+                    self.j2.call_event(pygame.JOYBALLMOTION, event)
                 if event.type == pygame.JOYBUTTONDOWN:
-                    self.j1._call_event(pygame.JOYBUTTONDOWN, event)
-                    self.j2._call_event(pygame.JOYBUTTONDOWN, event)
+                    self.j1.call_event(pygame.JOYBUTTONDOWN, event)
+                    self.j2.call_event(pygame.JOYBUTTONDOWN, event)
                 if event.type == pygame.JOYBUTTONUP:
-                    self.j1._call_event(pygame.JOYBUTTONUP, event)
-                    self.j2._call_event(pygame.JOYBUTTONUP, event)
+                    self.j1.call_event(pygame.JOYBUTTONUP, event)
+                    self.j2.call_event(pygame.JOYBUTTONUP, event)
                 if event.type == pygame.JOYHATMOTION:
-                    self.j1._call_event(pygame.JOYHATMOTION, event)
-                    self.j2._call_event(pygame.JOYHATMOTION, event)
+                    self.j1.call_event(pygame.JOYHATMOTION, event)
+                    self.j2.call_event(pygame.JOYHATMOTION, event)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a:
                         self.p1.change_direction(0, -1)
@@ -144,4 +145,5 @@ class Tron:
             screen.blit(text_surface, text_rect)
 
             pygame.display.flip()
+            clock.tick(60)
         pygame.quit()
