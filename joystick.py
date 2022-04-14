@@ -46,6 +46,5 @@ class Joystick:
         if event.joy != self.id:
             return
 
-        print(1)
         for f in self.events[event_id]:
             f(event)
