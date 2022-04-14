@@ -25,7 +25,7 @@ p2_default_x = width - size * 5
 p1_default_y = p2_default_y = (height - size) / 2
 
 pygame.font.init()
-font_msg = pygame.font.SysFont('monospace', 20, bold=True)
+font_msg = pygame.font.SysFont('monospace', 16, bold=True)
 font_scores = pygame.font.SysFont('monospace', 48, bold=True)
 
 clock = pygame.time.Clock()
