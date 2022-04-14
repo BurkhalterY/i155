@@ -19,32 +19,33 @@ class Joystick:
 
     def add_event(self, event_id, func):
         if not event_id in self.events:
+            # Create event type if not exists
             self.events[event_id] = []
-        self.events[event_id] += [func]
+        self.events[event_id] += [func]  # Add function to event list
 
     def remove_event(self, event_id, func):
         if not event_id in self.events:
+            # If this event type not exits, do nothing
             return
         events = self.events[event_id]
         if func in events:
+            # If this event functino exit in list, remove it
             events.remove(func)
 
     def call_event(self, event_id, event):
-        '''Calls the registered events
-
-        Params
-        ------
-        event_id: int
-            Id of the event whose functions are to call
-        '''
+        # No function for this event type -> return
         if not event_id in self.events:
             return
 
+        # Not a joystick event type -> return
         if not 'joy' in event.dict:
             return
 
+        # Joystick of event isn't the same as the current joystick -> return
         if event.joy != self.id:
             return
 
+        # If all if are false
+        # Execute all registered functions
         for f in self.events[event_id]:
             f(event)
