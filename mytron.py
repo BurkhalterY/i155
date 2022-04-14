@@ -9,7 +9,7 @@ pygame.init()
 pygame.display.init()
 pygame.joystick.init()
 
-# Contstant declaration
+# Constant declaration
 PLAYER_1_COLOR = (0, 0, 255)
 PLAYER_2_COLOR = (255, 255, 0)
 BG_COLOR = (0, 0, 0)
