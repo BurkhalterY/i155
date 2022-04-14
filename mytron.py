@@ -3,27 +3,31 @@ from joystick import Joystick
 from player import Player
 import os
 
-
+# Initialization
 os.environ["DISPLAY"] = ":0"
 pygame.init()
 pygame.display.init()
 pygame.joystick.init()
 
+# Contstant declaration
 PLAYER_1_COLOR = (0, 0, 255)
 PLAYER_2_COLOR = (255, 255, 0)
 BG_COLOR = (0, 0, 0)
 MSG_COLOG = (255, 0, 0)
 
+# Create window
 screen = pygame.display.set_mode((480, 320), pygame.FULLSCREEN)
 screen_rect = screen.get_rect()
 width, height = pygame.display.get_surface().get_size()
 pygame.display.set_caption("TRON BATTLE 1V1 OMG")
 
+# Calculate spawns
 size = width / 50
 p1_default_x = size * 4
 p2_default_x = width - size * 5
 p1_default_y = p2_default_y = (height - size) / 2
 
+# Set font to use for message text and scores
 pygame.font.init()
 font_msg = pygame.font.SysFont('monospace', 16, bold=True)
 font_scores = pygame.font.SysFont('monospace', 48, bold=True)
@@ -51,7 +55,6 @@ class Tron:
         while True:
             self.joystick_count = pygame.joystick.get_count()
             if self.joystick_count >= 2:
-                # Initializes the joysticks if they aren't (needed for pygame)
                 if self.j1 is None and self.j2 is None:
                     self.j1 = Joystick(0)
                     self.j2 = Joystick(1)
@@ -79,6 +82,7 @@ class Tron:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.playing = False
+                # Joysticks events
                 if event.type == pygame.JOYAXISMOTION:
                     self.j1.call_event(pygame.JOYAXISMOTION, event)
                     self.j2.call_event(pygame.JOYAXISMOTION, event)
@@ -94,6 +98,7 @@ class Tron:
                 if event.type == pygame.JOYHATMOTION:
                     self.j1.call_event(pygame.JOYHATMOTION, event)
                     self.j2.call_event(pygame.JOYHATMOTION, event)
+                # Keyboard events
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a:
                         self.p1.change_direction(0, -1)
@@ -112,9 +117,11 @@ class Tron:
                     elif event.key == pygame.K_UP:
                         self.p2.change_direction(1, -1)
 
+            # move players
             self.p1.move()
             self.p2.move()
 
+            # check if a player is dead
             p1_is_dead = -1 != self.p1.rect.collidelist(self.p2.rects) \
                    or -1 != self.p1.rect.collidelist(self.p1.rects[:-20]) \
                    or not screen_rect.contains(self.p1.rect)
@@ -123,6 +130,7 @@ class Tron:
                       or -1 != self.p2.rect.collidelist(self.p2.rects[:-20]) \
                       or not screen_rect.contains(self.p2.rect)
 
+            # increment score only if only one player is dead
             if p1_is_dead or p2_is_dead:
                 self.reset()
             if p1_is_dead and not p2_is_dead:
@@ -130,12 +138,14 @@ class Tron:
             if p2_is_dead and not p1_is_dead:
                 self.p1_score += 1
 
+            # reset screen
             screen.fill(BG_COLOR)
 
             # draw players
             self.p1.draw(screen)
             self.p2.draw(screen)
 
+            # draw scores
             text_surface = font_scores.render(str(self.p1_score), False, PLAYER_1_COLOR)
             text_rect = text_surface.get_rect(center=(p1_default_x, 48))
             screen.blit(text_surface, text_rect)
@@ -144,6 +154,9 @@ class Tron:
             text_rect = text_surface.get_rect(center=(p2_default_x, 48))
             screen.blit(text_surface, text_rect)
 
+            # apply display update
             pygame.display.flip()
+
+            # wait 1/60s
             clock.tick(60)
         pygame.quit()
